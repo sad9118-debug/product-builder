@@ -20,8 +20,8 @@
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
     margin: 0;
     background-color: var(--background-color);
@@ -29,37 +29,51 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.language-switcher {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+header {
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 1rem 2rem;
+    box-sizing: border-box;
 }
 
-.language-switcher a {
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links a {
     color: var(--text-color);
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease;
 }
 
-.nav-link {
-    position: absolute;
-    top: 20px;
-    left: 100px; /* Adjusted position to be next to language switcher */
-    margin-left: 20px; /* Add some spacing */
-}
-
-.nav-link a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+.nav-links a:hover {
+    color: var(--primary-color);
 }
 
 .theme-switcher {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: relative;
+    top: 0;
+    right: 0;
 }
 
 #theme-toggle {
@@ -97,7 +111,6 @@ body {
     transform: translateX(25px);
 }
 
-
 .container {
     background: var(--white);
     padding: 2rem;
@@ -107,6 +120,13 @@ body {
     width: 90%;
     max-width: 400px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 2rem auto;
+}
+
+.intro {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
 }
 
 h1 {
@@ -141,19 +161,24 @@ h1 {
 }
 
 .menu {
-    width: auto;
-    padding: 1rem 2rem;
+    width: 100%;
+    padding: 1rem;
     background-color: var(--secondary-color);
     color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     animation: popIn 0.5s ease;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.menu p {
+    margin: 0;
+    font-size: 1rem;
 }
 
 /* Contact Form Styles */
@@ -266,6 +291,21 @@ h1 {
     margin-bottom: 5px;
 }
 
+footer {
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 -2px 4px var(--shadow-color);
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    color: var(--text-color);
+}
+
 @keyframes popIn {
     0% {
         transform: scale(0);
@@ -281,23 +321,18 @@ h1 {
     .container {
         padding: 1.5rem;
     }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
     .menu {
         font-size: 1.5rem;
-    }
-    .language-switcher {
-        top: 15px;
-        left: 15px;
-    }
-    .nav-link:nth-of-type(1) { /* Contact link */
-        top: 15px;
-        left: 80px;
-    }
-    .nav-link:nth-of-type(2) { /* Pet Face Test link */
-        top: 15px;
-        left: 150px;
-    }
-    .theme-switcher {
-        top: 15px;
-        right: 15px;
     }
 }
