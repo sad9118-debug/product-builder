@@ -25,14 +25,6 @@ generateBtn.addEventListener('click', () => {
     menuEl.classList.add('menu');
     menuEl.textContent = selectedMenu;
     menuContainer.appendChild(menuEl);
-
-    if (selectedMenu === "피자") {
-        const pizzaImg = document.createElement('img');
-        pizzaImg.src = 'ai-generated-8844274_1920.png';
-        pizzaImg.alt = '피자';
-        pizzaImg.classList.add('menu-image');
-        menuContainer.appendChild(pizzaImg);
-    }
 });
 
 function switchTheme(e) {

@@ -42,6 +42,19 @@ body {
     transition: color 0.3s ease;
 }
 
+.nav-link {
+    position: absolute;
+    top: 20px;
+    left: 100px; /* Adjusted position to be next to language switcher */
+}
+
+.nav-link a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
 .theme-switcher {
     position: absolute;
     top: 20px;
@@ -120,9 +133,7 @@ h1 {
 
 #menu-container {
     display: flex;
-    flex-direction: column; /* Changed to column for stacking menu and image */
     justify-content: center;
-    align-items: center; /* Center items horizontally */
     flex-wrap: wrap;
     margin-top: 2rem;
     gap: 10px;
@@ -144,14 +155,56 @@ h1 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menu-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 15px;
-    box-shadow: 0 4px 8px var(--shadow-color);
+/* Contact Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 2rem;
+    text-align: left;
 }
 
+.contact-form label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--white);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.contact-form button[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    align-self: center; /* Center the button */
+}
+
+.contact-form button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
 
 @keyframes popIn {
     0% {
