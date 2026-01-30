@@ -25,6 +25,14 @@ generateBtn.addEventListener('click', () => {
     menuEl.classList.add('menu');
     menuEl.textContent = selectedMenu;
     menuContainer.appendChild(menuEl);
+
+    if (selectedMenu === "Pizza") {
+        const pizzaImg = document.createElement('img');
+        pizzaImg.src = 'ai-generated-8844274_1920.png';
+        pizzaImg.alt = 'Pizza';
+        pizzaImg.classList.add('menu-image');
+        menuContainer.appendChild(pizzaImg);
+    }
 });
 
 function switchTheme(e) {
