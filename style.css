@@ -46,6 +46,7 @@ body {
     position: absolute;
     top: 20px;
     left: 100px; /* Adjusted position to be next to language switcher */
+    margin-left: 20px; /* Add some spacing */
 }
 
 .nav-link a {
@@ -206,6 +207,30 @@ h1 {
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
 }
 
+/* Teachable Machine styles */
+#webcam-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#label-container {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+#label-container div {
+    margin-bottom: 5px;
+}
+
+canvas {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    max-width: 100%; /* Make webcam responsive */
+    height: auto;
+}
+
 @keyframes popIn {
     0% {
         transform: scale(0);
@@ -223,5 +248,15 @@ h1 {
     }
     .menu {
         font-size: 1.5rem;
+    }
+    .nav-link {
+        left: 80px; /* Adjust for smaller screens */
+        top: 45px; /* Move it down a bit */
+    }
+    .language-switcher {
+        top: 45px;
+    }
+    .theme-switcher {
+        top: 45px;
     }
 }

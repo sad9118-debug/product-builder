@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="language-switcher">
+        <a href="pet_face_test.html">English</a>
+    </div>
+    <div class="nav-link">
+        <a href="contact_ko.html">문의</a>
+    </div>
+    <div class="theme-switcher">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle"></label>
+    </div>
+    <div class="container">
+        <h1>동물상 테스트</h1>
+        <div>티처블 머신 이미지 모델</div>
+        <button type="button" onclick="init()">시작</button>
+        <div id="webcam-container"></div>
+        <div id="label-container"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        const URL = "https://teachablemachine.withgoogle.com/models/iRFfOy1i3/";
+
+        let model, webcam, labelContainer, maxPredictions;
+
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+
+            const flip = true;
+            webcam = new tmImage.Webcam(200, 200, flip);
+            await webcam.setup();
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) {
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+        }
+
+        // Theme switching logic (copied from main.js)
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        themeToggle.addEventListener('change', switchTheme);
+
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            html.setAttribute('data-theme', currentTheme);
+
+            if (currentTheme === 'dark') {
+                themeToggle.checked = true;
+            }
+        }
+    </script>
+</body>
+</html>
