@@ -19,9 +19,10 @@
     </div>
     <div class="container">
         <h1>동물상 테스트</h1>
-        <div>티처블 머신 이미지 모델</div>
-        <button type="button" onclick="init()">시작</button>
-        <div id="webcam-container"></div>
+        <div>고양이 또는 강아지 이미지를 업로드하여 종류를 확인하세요!</div>
+        <input type="file" id="file-input" accept="image/*">
+        <img id="preview-image" src="#" alt="이미지 미리보기" style="display: none;">
+        <button type="button" id="predict-button" style="display: none;">예측</button>
         <div id="label-container"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -29,7 +30,10 @@
     <script type="text/javascript">
         const URL = "https://teachablemachine.withgoogle.com/models/iRFfOy1i3/";
 
-        let model, webcam, labelContainer, maxPredictions;
+        let model, labelContainer, maxPredictions;
+        const fileInput = document.getElementById('file-input');
+        const previewImage = document.getElementById('preview-image');
+        const predictButton = document.getElementById('predict-button');
 
         async function init() {
             const modelURL = URL + "model.json";
@@ -38,33 +42,47 @@
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            const flip = true;
-            webcam = new tmImage.Webcam(200, 200, flip);
-            await webcam.setup();
-            await webcam.play();
-            window.requestAnimationFrame(loop);
-
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
             labelContainer = document.getElementById("label-container");
             for (let i = 0; i < maxPredictions; i++) {
                 labelContainer.appendChild(document.createElement("div"));
             }
         }
 
-        async function loop() {
-            webcam.update();
-            await predict();
-            window.requestAnimationFrame(loop);
-        }
-
         async function predict() {
-            const prediction = await model.predict(webcam.canvas);
-            for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                labelContainer.childNodes[i].innerHTML = classPrediction;
+            if (previewImage.src && previewImage.style.display !== 'none') {
+                const prediction = await model.predict(previewImage);
+                for (let i = 0; i < maxPredictions; i++) {
+                    const classPrediction =
+                        prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                }
+            } else {
+                labelContainer.innerHTML = '먼저 이미지를 업로드하세요.';
             }
         }
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    predictButton.style.display = 'block';
+                    labelContainer.innerHTML = ''; // Clear previous predictions
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = 'none';
+                predictButton.style.display = 'none';
+                labelContainer.innerHTML = '';
+            }
+        });
+
+        predictButton.addEventListener('click', predict);
+
+        // Load the model when the page loads
+        init();
 
         // Theme switching logic (copied from main.js)
         const themeToggle = document.getElementById('theme-toggle');
