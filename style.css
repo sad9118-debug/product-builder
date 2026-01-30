@@ -8,6 +8,15 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+:root[data-theme="dark"] {
+    --primary-color: #bb86fc;
+    --secondary-color: #03dac6;
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --white: #1e1e1e;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -17,7 +26,50 @@ body {
     margin: 0;
     background-color: var(--background-color);
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    transition: background-color 0.3s ease;
 }
+
+.theme-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+#theme-toggle + label {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 12.5px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle + label::after {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:checked + label {
+    background-color: var(--primary-color);
+}
+
+#theme-toggle:checked + label::after {
+    transform: translateX(25px);
+}
+
 
 .container {
     background: var(--white);
@@ -27,11 +79,13 @@ body {
     text-align: center;
     width: 90%;
     max-width: 400px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 h1 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
 }
 
 #generate-btn {
@@ -72,6 +126,7 @@ h1 {
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     animation: popIn 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @keyframes popIn {
