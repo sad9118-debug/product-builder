@@ -29,6 +29,19 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.language-switcher a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
 .theme-switcher {
     position: absolute;
     top: 20px;
