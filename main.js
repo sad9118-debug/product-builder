@@ -1,22 +1,30 @@
 const generateBtn = document.getElementById('generate-btn');
-const numbersContainer = document.getElementById('numbers-container');
+const menuContainer = document.getElementById('menu-container');
 const themeToggle = document.getElementById('theme-toggle');
 const html = document.documentElement;
 
-generateBtn.addEventListener('click', () => {
-    numbersContainer.innerHTML = '';
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
-    }
+const dinnerMenus = [
+    "Steak",
+    "Pasta",
+    "Pizza",
+    "Sushi",
+    "Salad",
+    "Tacos",
+    "Burger",
+    "Fried Chicken",
+    "Ramen",
+    "Bibimbap"
+];
 
-    for (const number of numbers) {
-        const numberEl = document.createElement('div');
-        numberEl.classList.add('number');
-        numberEl.textContent = number;
-        numbersContainer.appendChild(numberEl);
-    }
+generateBtn.addEventListener('click', () => {
+    menuContainer.innerHTML = '';
+    const randomIndex = Math.floor(Math.random() * dinnerMenus.length);
+    const selectedMenu = dinnerMenus[randomIndex];
+    
+    const menuEl = document.createElement('div');
+    menuEl.classList.add('menu');
+    menuEl.textContent = selectedMenu;
+    menuContainer.appendChild(menuEl);
 });
 
 function switchTheme(e) {
