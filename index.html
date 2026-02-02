@@ -1,105 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Can't decide what to eat for dinner? Get a random dinner menu recommendation with a short description.">
-    <title>Dinner Menu Recommendation</title>
+    <title>한국의 숨은 명곡</title>
     <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3269592078237192" crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-3269592078237192">
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXZZFK48T4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KXZZFK48T4');
-</script>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vaga9i5acj");
-</script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="index.html">Dinner Menu Recommendation</a>
-            </div>
-            <div class="nav-links">
-                <a href="contact.html">Contact</a>
-                <div class="language-switcher">
-                    <a href="index_ko.html">한국어</a>
-                </div>
-                <div class="theme-switcher">
-                    <input type="checkbox" id="theme-toggle">
-                    <label for="theme-toggle"></label>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!-- AdSense ad unit -->
-    <div class="ads-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3269592078237192"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
     <div class="container">
-        <h1>Dinner Menu Recommendation</h1>
-        <p class="intro">
-            Can't decide what to eat for dinner? Let us help you!
-            Click the button below to get a random dinner menu recommendation.
-        </p>
-        <button id="generate-btn">Get Recommendation</button>
-        <div id="menu-container"></div>
-
-        <!-- AdSense ad unit -->
-        <div class="ads-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3269592078237192"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <header>
+            <h1>한국의 숨은 명곡</h1>
+            <p>시대를 선택하고 숨겨진 보석 같은 노래를 발견하세요.</p>
+        </header>
+        <div class="era-buttons">
+            <button class="era-btn" data-era="1970">1970년대</button>
+            <button class="era-btn" data-era="1980">1980년대</button>
+            <button class="era-btn" data-era="1990">1990년대</button>
         </div>
-
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://productbuilder1-1.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <div id="song-recommendation" class="song-card hidden">
+            <h2 id="song-title"></h2>
+            <p id="song-artist"></p>
+            <div class="youtube-player">
+                <iframe id="youtube-iframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p id="song-description"></p>
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2026 Dinner Menu Recommendation. All rights reserved.</p>
-    </footer>
     <script src="main.js"></script>
 </body>
 </html>
